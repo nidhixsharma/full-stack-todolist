@@ -6,7 +6,7 @@ if(err) {
      return console.log(`unable to connect MongoDB server`);
 }
 console.log('Connected to MongoDB server');
-const db = client.db('TodoList')
+const db = client.db('TodoApp')
 db.collection('Todos').insertOne({
 
 },(err,result)=>{
