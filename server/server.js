@@ -83,6 +83,15 @@ app.post('/todos',(req,res)=>{
 
     });
 
+    app.delete('/todos',(req,res)=>{
+        Todo.remove({}).then((result)=>{
+            res.send({todo});
+        }).catch((e)=>{
+            res.status(400).send();
+        })
+
+    })
+
 app.listen(port,()=>{
 console.log(`server started at ${port}`);
 });
