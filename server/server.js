@@ -84,7 +84,7 @@ app.post('/todos',(req,res)=>{
     });
 
     app.delete('/todos',(req,res)=>{
-        Todo.deleteMany().then((todo)=>{
+        Todo.deleteMany({}).then((todo)=>{
             res.status(200).send({todo});
         }).catch((e)=>{
             res.status(400).send();
