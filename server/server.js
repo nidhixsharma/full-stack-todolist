@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');
-var cors =require('cors');
+
 const {ObjectID} = require('mongodb');
 
 var {mongoose} = require('./db/mongoose');
@@ -10,9 +10,6 @@ var {User}= require('./models/user');
 
 var app = express();
 const port = process.env.PORT || 3000;
-
-app.use(cors({ allowedHeaders: 'Content-Type, Cache-Control' }));
-app.options('*', cors());  // enable pre-flight
 app.use(bodyParser.json());
 
 app.post('/todos',(req,res)=>{
