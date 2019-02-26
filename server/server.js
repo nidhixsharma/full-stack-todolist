@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');
+var cors =require('cors');
 const {ObjectID} = require('mongodb');
 
 var {mongoose} = require('./db/mongoose');
@@ -9,6 +10,9 @@ var {User}= require('./models/user');
 
 var app = express();
 const port = process.env.PORT || 3000;
+
+app.use(cors({ allowedHeaders: 'Content-Type, Cache-Control' }));
+app.options('*', cors());  // enable pre-flight
 app.use(bodyParser.json());
 
 app.post('/todos',(req,res)=>{
@@ -84,7 +88,7 @@ app.post('/todos',(req,res)=>{
     });
 
     app.delete('/todos',(req,res)=>{
-        Todo.deleteMany({}).then((todo)=>{
+        Todo.deleteMany({}).then((result)=>{
             res.status(200).send({todo});
         }).catch((e)=>{
             res.status(400).send();
